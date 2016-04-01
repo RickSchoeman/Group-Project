@@ -3,29 +3,33 @@ package groupProject;
 import java.util.ArrayList;
 
 public class Leraar {
+	private String vak;
 	private String gebruikersNaam;
-	private String wachtwoord;
-	private ArrayList<Vak> mijnVakken;
+	private String klas;
+	private String lesDatum;
+	private String lesStart;
+	private String lesEind;
+	private String locatie;
+
 	
-	public Leraar(String gbNm, String ww) {
-		mijnVakken = new ArrayList<Vak>();
+	public Leraar(String nwV, String gbNm, String nwK, String lD, String lS, String lE, String l) {
+		vak = nwV;
 		gebruikersNaam = gbNm;
-		wachtwoord = ww;
+		klas = nwK;
+		lesDatum = lD;
+		lesStart = lS;
+		lesEind = lE;
+		locatie = l;
 	}
 	
 	public String getGebruikersNaam() {
 		return gebruikersNaam;
 	}
+
 	
-	public boolean controleerWachtwoord(String ww) {
-		return wachtwoord.equals(ww);
-	}
-	
-	public void voegVakToe(Vak nwV) {
-		mijnVakken.add(nwV);
-	}
-	
-	public ArrayList<Vak> getVakken() {
-		return mijnVakken;
+	@Override
+	public String toString() {
+		String s =lesDatum + " | " + lesStart + " | " + lesEind + " | " + locatie + " | " + klas + " | " + vak + " | " + gebruikersNaam ;
+		return s;
 	}
 }

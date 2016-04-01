@@ -39,7 +39,6 @@ public class Klas {
 		for(int i = 0; i < deLeerlingen.size(); i++) {   
 		    s = s + deLeerlingen.get(i) + "\n";
 		}  
-		System.out.println(s);
 		return s;
 	}
 }

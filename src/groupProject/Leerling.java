@@ -24,24 +24,7 @@ public class Leerling {
 		this.klas = klas;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		
-		if (this == obj) {
-			return true;
-		}
-
-		boolean gelijkeObjecten = false;
-
-		if (obj instanceof Leerling) {
-			Leerling andereAuto = (Leerling) obj;
-			if (this.klas.equals(andereAuto.klas)) {
-
-				gelijkeObjecten = true;
-			}
-		}
-		return gelijkeObjecten;
-	}
+	
 	
 	@Override
 	public String toString() {
