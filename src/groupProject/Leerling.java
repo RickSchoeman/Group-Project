@@ -6,8 +6,6 @@ public class Leerling {
 	private String gebruikersNaam;
 	private String klas;
 	
-	private Klas mijnKlas;
-	
 	public Leerling(String lnr,String gbNm, String k) {
 		leerlingNummer = lnr;
 		gebruikersNaam = gbNm;
@@ -24,5 +22,30 @@ public class Leerling {
 	
 	public void setKlas(String klas) {
 		this.klas = klas;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj) {
+			return true;
+		}
+
+		boolean gelijkeObjecten = false;
+
+		if (obj instanceof Leerling) {
+			Leerling andereAuto = (Leerling) obj;
+			if (this.klas.equals(andereAuto.klas)) {
+
+				gelijkeObjecten = true;
+			}
+		}
+		return gelijkeObjecten;
+	}
+	
+	@Override
+	public String toString() {
+		String s = leerlingNummer + gebruikersNaam + klas;
+		return s;
 	}
 }
