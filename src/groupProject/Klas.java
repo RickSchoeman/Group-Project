@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Klas {
 	private String klasCode;
-	protected ArrayList<Leerling> deLeerlingen;
+	private ArrayList<Leerling> deLeerlingen = new ArrayList<Leerling>();
 	
 	public Klas(String kC) {
 		klasCode = kC;
@@ -30,12 +30,16 @@ public class Klas {
 			regel = br.readLine();
 		}
 		br.close();
+		
+		
+	}
+	@Override
+	public String toString() {
 		String s = klasCode + " bevat de volgende leerlingen: \n";
 		for(int i = 0; i < deLeerlingen.size(); i++) {   
 		    s = s + deLeerlingen.get(i) + "\n";
 		}  
 		System.out.println(s);
-		
-		
+		return s;
 	}
 }
