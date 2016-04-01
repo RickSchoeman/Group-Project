@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Klas {
 	private String klasCode;
-	private ArrayList<Leerling> deLeerlingen;
+	protected ArrayList<Leerling> deLeerlingen;
 	
 	public Klas(String kC) {
 		klasCode = kC;
@@ -15,7 +15,27 @@ public class Klas {
 		return klasCode;
 	}
 	
-	public void vulKlas(){
+	public void vulKlas() throws IOException, FileNotFoundException {
+		FileReader fr = new FileReader("src/"+klasCode+".txt");
+		BufferedReader br = new BufferedReader(fr);
+		String regel = br.readLine();
+		while (regel != null) {
+			String[] values = regel.split(",");
+			String lnr = values[0] + " ";
+			String gbNm = values[3]+ " " + values[2] + " " + values[1];
+			String k = " " +klasCode;
+			Leerling s = new Leerling(lnr, gbNm, k);
+			deLeerlingen.add(s);
+
+			regel = br.readLine();
+		}
+		br.close();
+		String s = klasCode + " bevat de volgende leerlingen: \n";
+		for(int i = 0; i < deLeerlingen.size(); i++) {   
+		    s = s + deLeerlingen.get(i) + "\n";
+		}  
+		System.out.println(s);
+		
 		
 	}
 }
