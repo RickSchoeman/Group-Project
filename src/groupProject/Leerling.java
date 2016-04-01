@@ -2,28 +2,27 @@ package groupProject;
 
 
 public class Leerling {
+	private String leerlingNummer;
 	private String gebruikersNaam;
-	private String wachtwoord;
+	private String klas;
+	
 	private Klas mijnKlas;
 	
-	public Leerling(String gbNm, String ww) {
+	public Leerling(String lnr,String gbNm, String k) {
+		leerlingNummer = lnr;
 		gebruikersNaam = gbNm;
-		wachtwoord = ww;
+		klas = k;
 	}
 	
 	public String getGebruikersNaam() {
 		return gebruikersNaam;
 	}
 	
-	public boolean controleerWachtwoord(String ww) {
-		return ww.equals(wachtwoord);
+	public String getKlas() {
+		return klas;
 	}
 	
-	public void setMijnKlas(Klas k) {
-		mijnKlas = k;
-	}
-	
-	public Klas getMijnKlas() {
-		return mijnKlas;
+	public void setKlas(String klas) {
+		this.klas = klas;
 	}
 }
