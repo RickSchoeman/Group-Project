@@ -20,8 +20,8 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3;
-	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieNrlabel, PresentieDatumlabel;
+	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie;
+	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieNrlabel, presentieDatumlabel, presentieMeldenlabel;
 	private TextField gbrNm, ww, presentieNr;
 	private TextArea  roostertextL, roostertextS;
 	private DatePicker presentieDatum;
@@ -51,9 +51,17 @@ public class App extends Application{
 		roostertextS = new TextArea();
 		roostertextS.setMinSize(500, 700);
 		roostertextS.setEditable(false);
+		presentieMeldenlabel = new Label("Presentie Melden");
+		presentieMeldenlabel.setMinWidth(600);
 		presentieNrlabel = new Label("Student Nr.");
+		presentieNrlabel.setMinWidth(300);
 		presentieNr = new TextField();
-		presentieDatum = new DatePicker();
+		presentieNr.setMinWidth(300);
+		presentieDatumlabel = new Label("Datum");
+		presentieDatumlabel.setMinWidth(300);
+		presentieDatum = new DatePicker(LocalDate.now());
+		presentieDatum.setMinWidth(300);
+		meldPresentie = new Button("Meld");
 
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -120,12 +128,25 @@ public class App extends Application{
 		optieL2 = new Button("Presentie Melden");
 		optieL2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				meldPresentie.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					if(!presentieNr.getText().equals("")){
+						Presentie p1 = new Presentie(presentieNr.getText(), presentieDatum.getValue());
+						try {
+							p1.meldPresentie();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						}
+						else{
+							presentieMeldenlabel.setText("U heeft de gegevens verkeerd ingevuld");
+						}}});
 				FlowPane presentieL = new FlowPane();
 				presentieL.setPadding(new Insets(10,10,10,10));
 				presentieL.setVgap(4);
 				presentieL.setHgap(4);
 				presentieL.setPrefWrapLength(300);
-				presentieL.getChildren().addAll(optieL1, optieL2, optieL3);
+				presentieL.getChildren().addAll(presentieMeldenlabel, presentieNrlabel, presentieNr, presentieDatumlabel, presentieDatum, meldPresentie);
 				Scene presentieLeraar = new Scene(presentieL, 600, 800);
 				thestage.setScene(presentieLeraar);
 				thestage.setTitle("Presentie Melden");

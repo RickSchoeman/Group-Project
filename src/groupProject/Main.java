@@ -1,6 +1,7 @@
 package groupProject;
 
 import java.io.*;
+import java.time.LocalDate;
 
 public class Main{
 
@@ -32,7 +33,7 @@ public class Main{
 		
 		LoginLeraar logL1 = new LoginLeraar("Alex Jongman", "123");
 		
-		Presentie p1 = new Presentie("1682250", "2-4-2016");
+		Presentie p1 = new Presentie("1682250", LocalDate.now());
 		
 		
 		k1.vulKlas();

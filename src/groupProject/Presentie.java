@@ -1,12 +1,13 @@
 package groupProject;
 
 import java.io.*;
+import java.time.LocalDate;
 
 public class Presentie {
 	private String leerlingNr;
-	private String datum;
+	private LocalDate datum;
 
-	public Presentie(String lNr, String dat) {
+	public Presentie(String lNr, LocalDate dat) {
 		leerlingNr = lNr;
 		datum = dat;
 	}
@@ -15,7 +16,7 @@ public class Presentie {
 
 		FileWriter fw = new FileWriter("src/presentie.txt", true);
 		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(leerlingNr + " was op " + datum + " afwezig bij de les.");
+		bw.write(leerlingNr + "," + datum);
 		bw.newLine();
 		bw.close();
 	}
