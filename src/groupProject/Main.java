@@ -31,6 +31,8 @@ public class Main{
 		
 		LoginLeraar logL1 = new LoginLeraar("Alex Jongman", "123");
 		
+		Presentie p1 = new Presentie("1682250", "2-4-2016");
+		
 		
 		k1.vulKlas();
 		System.out.println(k1.toString());
@@ -78,6 +80,8 @@ public class Main{
 		System.out.println(logS1.checkLogin());
 		
 		System.out.println(logL1.checkLogin());
+		
+		p1.meldPresentie();
 
 	}
 	
