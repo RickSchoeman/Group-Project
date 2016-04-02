@@ -21,9 +21,9 @@ public class Klas {
 		String regel = br.readLine();
 		while (regel != null) {
 			String[] values = regel.split(",");
-			String lnr = values[0] + " ";
+			String lnr = values[0];
 			String gbNm = values[3]+ " " + values[2] + " " + values[1];
-			String k = " " +klasCode;
+			String k = klasCode;
 			Leerling s = new Leerling(lnr, gbNm, k);
 			deLeerlingen.add(s);
 

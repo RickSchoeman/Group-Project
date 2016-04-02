@@ -1,6 +1,6 @@
 package groupProject;
 
-import java.util.ArrayList;
+
 
 public class Leraar {
 	private String vak;

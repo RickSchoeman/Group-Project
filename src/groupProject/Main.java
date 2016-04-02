@@ -1,7 +1,6 @@
 package groupProject;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class Main{
 
@@ -28,6 +27,10 @@ public class Main{
 		Rooster v1e = new Rooster("SIE_V1E");
 		Rooster v1f = new Rooster("SIE_V1F");
 		
+		LoginStudent logS1 = new LoginStudent("1682250", "123");
+		
+		LoginLeraar logL1 = new LoginLeraar("Alex Jongman", "123");
+		
 		
 		k1.vulKlas();
 		System.out.println(k1.toString());
@@ -40,6 +43,7 @@ public class Main{
 		k5.vulKlas();
 		System.out.println(k5.toString());
 		k6.vulKlas();
+		
 		System.out.println(k6.toString());
 		v1.vulVak();
 		System.out.println(v1.toString());
@@ -56,6 +60,7 @@ public class Main{
 		v7.vulVak();
 		System.out.println(v7.toString());
 		v8.vulVak();
+		
 		System.out.println(v8.toString());
 		v1a.zoekRooster();
 		System.out.println(v1a.toString());
@@ -69,6 +74,10 @@ public class Main{
 		System.out.println(v1e.toString());
 		v1f.zoekRooster();
 		System.out.println(v1f.toString());
+		
+		System.out.println(logS1.checkLogin());
+		
+		System.out.println(logL1.checkLogin());
 
 	}
 	

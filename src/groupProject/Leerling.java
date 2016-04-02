@@ -28,7 +28,7 @@ public class Leerling {
 	
 	@Override
 	public String toString() {
-		String s = leerlingNummer + gebruikersNaam + klas;
+		String s = leerlingNummer + " | " + gebruikersNaam + " | " + klas;
 		return s;
 	}
 }
