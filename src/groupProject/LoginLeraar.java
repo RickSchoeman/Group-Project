@@ -44,14 +44,8 @@ public class LoginLeraar {
 				if (ingevoerdWW.equals(wachtwoord)) {
 					return true;
 				} 
-				else {
-					return false;
-				}
-			} 
-			else {
-				return false;
-			}
-		}
+				
+			}}
 		br.close();
 		return false;
 	}

@@ -44,12 +44,6 @@ public class LoginStudent {
 				if (ingevoerdWW.equals(wachtwoord)) {
 					return true;
 				} 
-				else {
-					return false;
-				}
-			} 
-			else {
-				return false;
 			}
 		}
 		br.close();

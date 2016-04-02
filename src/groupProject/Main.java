@@ -11,6 +11,7 @@ public class Main{
 		Klas k4 = new Klas("SIE_V1D");
 		Klas k5 = new Klas("SIE_V1E");
 		Klas k6 = new Klas("SIE_V1F");
+		
 		Vak v1 = new Vak("Alex Jongman");
 		Vak v2 = new Vak("Peter van Rooijen");
 		Vak v3 = new Vak("Bart van Eijkelenburg");
