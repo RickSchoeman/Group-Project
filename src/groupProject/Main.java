@@ -6,12 +6,12 @@ import java.time.LocalDate;
 public class Main{
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		Klas k1 = new Klas("SIE_V1A");
-		Klas k2 = new Klas("SIE_V1B");
-		Klas k3 = new Klas("SIE_V1C");
-		Klas k4 = new Klas("SIE_V1D");
-		Klas k5 = new Klas("SIE_V1E");
-		Klas k6 = new Klas("SIE_V1F");
+		Klas k1 = new Klas("SIE-V1A");
+		Klas k2 = new Klas("SIE-V1B");
+		Klas k3 = new Klas("SIE-V1C");
+		Klas k4 = new Klas("SIE-V1D");
+		Klas k5 = new Klas("SIE-V1E");
+		Klas k6 = new Klas("SIE-V1F");
 		
 		Vak v1 = new Vak("Alex Jongman");
 		Vak v2 = new Vak("Peter van Rooijen");
@@ -22,12 +22,12 @@ public class Main{
 		Vak v7 = new Vak("Dick Pronk");
 		Vak v8 = new Vak("Peter Schuler");
 		
-		Rooster v1a = new Rooster("SIE_V1A");
-		Rooster v1b = new Rooster("SIE_V1B");
-		Rooster v1c = new Rooster("SIE_V1C");
-		Rooster v1d = new Rooster("SIE_V1D");
-		Rooster v1e = new Rooster("SIE_V1E");
-		Rooster v1f = new Rooster("SIE_V1F");
+		Rooster v1a = new Rooster("SIE-V1A");
+		Rooster v1b = new Rooster("SIE-V1B");
+		Rooster v1c = new Rooster("SIE-V1C");
+		Rooster v1d = new Rooster("SIE-V1D");
+		Rooster v1e = new Rooster("SIE-V1E");
+		Rooster v1f = new Rooster("SIE-V1F");
 		
 		LoginStudent logS1 = new LoginStudent("1682250", "123");
 		
@@ -71,8 +71,8 @@ public class Main{
 		v7.vulVak();
 		System.out.println(v7.toString());
 		v8.vulVak();
-		
 		System.out.println(v8.toString());
+		
 		v1a.zoekRooster();
 		System.out.println(v1a.toString());
 		v1b.zoekRooster();
@@ -96,10 +96,7 @@ public class Main{
 			b1.meldBeter();
 		}
 		
-<<<<<<< HEAD
-=======
-		System.out.println(ck.geefKlas());
->>>>>>> origin/master
+
 	}
 	
 }
