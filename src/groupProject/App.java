@@ -19,9 +19,10 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login;
+	private Button login, optieL1, optieL2, optieL3;
 	private Label logtext, gbrNmtext, wwtext;
 	private TextField gbrNm, ww;
+	protected FlowPane leraar;
 	
 	
 	@Override
@@ -54,12 +55,27 @@ public class App extends Application{
 				}
 			}
 			});
+		optieL1 = new Button("Optie 1");
+		optieL2 = new Button("Optie 2");
+		optieL3 = new Button("Optie 3");
+		
+		
+		
 		FlowPane root = new FlowPane();
 		root.setPadding(new Insets(10,10,10,10));
 		root.setVgap(4);
 		root.setHgap(4);
 		root.setPrefWrapLength(300);
 		root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
+		
+		
+		FlowPane leraar = new FlowPane();
+		leraar.setPadding(new Insets(10,10,10,10));
+		leraar.setVgap(4);
+		leraar.setHgap(4);
+		leraar.setPrefWrapLength(300);
+		leraar.getChildren().addAll(optieL1, optieL2, optieL3);
+		
 		
 		Scene scene = new Scene(root, 350, 195);
 		primaryStage.setTitle("Group Project");
