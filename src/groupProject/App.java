@@ -20,7 +20,7 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie;
+	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie, terug;
 	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieNrlabel, presentieDatumlabel, presentieMeldenlabel;
 	private TextField gbrNm, ww, presentieNr;
 	private TextArea  roostertextL, roostertextS;
@@ -62,6 +62,7 @@ public class App extends Application{
 		presentieDatum = new DatePicker(LocalDate.now());
 		presentieDatum.setMinWidth(300);
 		meldPresentie = new Button("Meld");
+		terug = new Button("Terug");
 
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {

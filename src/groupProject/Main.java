@@ -35,6 +35,9 @@ public class Main{
 		
 		Presentie p1 = new Presentie("1682250", LocalDate.now());
 		
+		Afmelden a1 = new Afmelden("1682250", LocalDate.now(), "Ziek");
+		Betermelden b1 = new Betermelden("1682250", LocalDate.now(), "Beter");
+		
 		
 		k1.vulKlas();
 		System.out.println(k1.toString());
@@ -84,6 +87,10 @@ public class Main{
 		System.out.println(logL1.checkLogin());
 		
 		p1.meldPresentie();
+		a1.meldAfwezigheid();
+		if(b1.checkMelding() == true){
+			b1.meldPresentie();
+		}
 
 	}
 	
