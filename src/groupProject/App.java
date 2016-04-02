@@ -22,7 +22,7 @@ public class App extends Application{
 	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3;
 	private Label logtext, gbrNmtext, wwtext;
 	private TextField gbrNm, ww;
-	Scene root, leraarkeuze;
+	Scene root, leraarkeuze, roosterLeraar, presentieLeraar, afwezigLeraar, roosterLeerling, presentieLeerling, afwezigLeerling;
 	Stage thestage;
 	
 	
@@ -38,7 +38,6 @@ public class App extends Application{
 		wwtext.setMinWidth(100);
 		ww = new TextField();
 		login = new Button("Login");
-		
 
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -79,12 +78,102 @@ public class App extends Application{
 				}
 			}
 			});
-		optieL1 = new Button("Optie 1");
-		optieL2 = new Button("Optie 2");
-		optieL3 = new Button("Optie 3");
-		optieS1 = new Button("Optie 1");
-		optieS2 = new Button("Optie 2");
-		optieS3 = new Button("Optie 3");
+		optieL1 = new Button("Bekijk Rooster");
+		optieL1.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane roosterL = new FlowPane();
+				roosterL.setPadding(new Insets(10,10,10,10));
+				roosterL.setVgap(4);
+				roosterL.setHgap(4);
+				roosterL.setPrefWrapLength(300);
+				roosterL.getChildren().addAll(optieL1, optieL2, optieL3);
+				Scene roosterLeraar = new Scene(roosterL, 350, 195);
+				thestage.setScene(roosterLeraar);
+				thestage.setTitle("Bekijk Rooster");
+				thestage.show();
+			}
+			});
+		
+		optieL2 = new Button("Presentie Melden");
+		optieL2.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane presentieL = new FlowPane();
+				presentieL.setPadding(new Insets(10,10,10,10));
+				presentieL.setVgap(4);
+				presentieL.setHgap(4);
+				presentieL.setPrefWrapLength(300);
+				presentieL.getChildren().addAll(optieL1, optieL2, optieL3);
+				Scene presentieLeraar = new Scene(presentieL, 350, 195);
+				thestage.setScene(presentieLeraar);
+				thestage.setTitle("Presentie Melden");
+				thestage.show();
+			}
+			});
+		
+		optieL3 = new Button("Afwezig Melden");
+		optieL3.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane afwezigL = new FlowPane();
+				afwezigL.setPadding(new Insets(10,10,10,10));
+				afwezigL.setVgap(4);
+				afwezigL.setHgap(4);
+				afwezigL.setPrefWrapLength(300);
+				afwezigL.getChildren().addAll(optieL1, optieL2, optieL3);
+				Scene afwezigLeraar = new Scene(afwezigL, 350, 195);
+				thestage.setScene(afwezigLeraar);
+				thestage.setTitle("Bekijk Rooster");
+				thestage.show();
+			}
+			});
+		
+		optieS1 = new Button("Bekijk Rooster");
+		optieS1.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane roosterS = new FlowPane();
+				roosterS.setPadding(new Insets(10,10,10,10));
+				roosterS.setVgap(4);
+				roosterS.setHgap(4);
+				roosterS.setPrefWrapLength(300);
+				roosterS.getChildren().addAll(optieL1, optieL2, optieL3);
+				Scene roosterLeerling = new Scene(roosterS, 350, 195);
+				thestage.setScene(roosterLeerling);
+				thestage.setTitle("Bekijk Rooster");
+				thestage.show();
+			}
+			});
+		
+		optieS2 = new Button("Presentie bekijken");
+		optieS2.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane presentieS = new FlowPane();
+				presentieS.setPadding(new Insets(10,10,10,10));
+				presentieS.setVgap(4);
+				presentieS.setHgap(4);
+				presentieS.setPrefWrapLength(300);
+				presentieS.getChildren().addAll(optieL1, optieL2, optieL3);
+				Scene presentieLeerling = new Scene(presentieS, 350, 195);
+				thestage.setScene(presentieLeerling);
+				thestage.setTitle("Bekijk Rooster");
+				thestage.show();
+			}
+			});
+		
+		optieS3 = new Button("Afwezig melden");
+		optieS3.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane afwezigS = new FlowPane();
+				afwezigS.setPadding(new Insets(10,10,10,10));
+				afwezigS.setVgap(4);
+				afwezigS.setHgap(4);
+				afwezigS.setPrefWrapLength(300);
+				afwezigS.getChildren().addAll(optieL1, optieL2, optieL3);
+				Scene afwezigLeerling = new Scene(afwezigS, 350, 195);
+				thestage.setScene(afwezigLeerling);
+				thestage.setTitle("Bekijk Rooster");
+				thestage.show();
+			}
+			});
+		
 		
 		
 		FlowPane root = new FlowPane();
@@ -93,17 +182,6 @@ public class App extends Application{
 		root.setHgap(4);
 		root.setPrefWrapLength(300);
 		root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
-		
-		
-		FlowPane leraar = new FlowPane();
-		leraar.setPadding(new Insets(10,10,10,10));
-		leraar.setVgap(4);
-		leraar.setHgap(4);
-		leraar.setPrefWrapLength(300);
-		leraar.getChildren().addAll(optieL1, optieL2, optieL3);
-		
-		Scene leraarkeuze = new Scene(leraar, 350, 195);
-		
 		
 		Scene scene = new Scene(root, 350, 195);
 		primaryStage.setTitle("Login");
