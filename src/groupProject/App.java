@@ -20,7 +20,7 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie, terugL, terugS, meldAfwezig;
+	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen;
 	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieNrlabel, presentieDatumlabel, presentieMeldenlabel
 	, afwezigPersoonlabel, afwezigRedenlabel, beterPersoonlabel, beterRedenlabel, afwezigLabel, afwezigDatumlabel;
 	private TextField gbrNm, ww, presentieNr, afwezigPersoon, afwezigReden, beterPersoon, beterReden;
@@ -86,10 +86,25 @@ public class App extends Application{
 		afwezigDatum.setMinWidth(300);
 		afwezigDatumlabel =new Label("Datum:");
 		afwezigDatumlabel.setMinWidth(300);
+		uitloggen = new Button("Uitloggen");
 		
-		
-		
-		
+		uitloggen.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane root = new FlowPane();
+				root.setPadding(new Insets(10,10,10,10));
+				root.setVgap(4);
+				root.setHgap(4);
+				root.setPrefWrapLength(300);
+				root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
+				Scene scene = new Scene(root, 600, 800);
+				primaryStage.setTitle("Login");
+				primaryStage.setScene(scene);
+				primaryStage.setResizable(false);
+				primaryStage.show();
+				gbrNm.setText("");
+				ww.setText("");
+			}});
+
 		terugL = new Button("Terug");
 		terugL.setAlignment(Pos.BOTTOM_CENTER);
 		terugL.setOnAction(new EventHandler<ActionEvent>() {
@@ -99,7 +114,7 @@ public class App extends Application{
 				leraar.setVgap(4);
 				leraar.setHgap(4);
 				leraar.setPrefWrapLength(300);
-				leraar.getChildren().addAll(optieL1, optieL2, optieL3);
+				leraar.getChildren().addAll(optieL1, optieL2, optieL3, uitloggen);
 				Scene leraarkeuze = new Scene(leraar, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leraar");
@@ -114,7 +129,7 @@ public class App extends Application{
 				leerling.setVgap(4);
 				leerling.setHgap(4);
 				leerling.setPrefWrapLength(300);
-				leerling.getChildren().addAll(optieS1, optieS2, optieS3);
+				leerling.getChildren().addAll(optieS1, optieS2, optieS3, uitloggen);
 				Scene leraarkeuze = new Scene(leerling, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leerling");
@@ -134,7 +149,7 @@ public class App extends Application{
 						leerling.setVgap(4);
 						leerling.setHgap(4);
 						leerling.setPrefWrapLength(300);
-						leerling.getChildren().addAll(optieS1, optieS2, optieS3);
+						leerling.getChildren().addAll(optieS1, optieS2, optieS3, uitloggen);
 						Scene leraarkeuze = new Scene(leerling, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leerling");
@@ -147,7 +162,7 @@ public class App extends Application{
 						leraar.setVgap(4);
 						leraar.setHgap(4);
 						leraar.setPrefWrapLength(300);
-						leraar.getChildren().addAll(optieL1, optieL2, optieL3);
+						leraar.getChildren().addAll(optieL1, optieL2, optieL3, uitloggen);
 						Scene leraarkeuze = new Scene(leraar, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leraar");
