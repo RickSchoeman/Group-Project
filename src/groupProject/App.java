@@ -19,14 +19,16 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login, optieL1, optieL2, optieL3;
+	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3;
 	private Label logtext, gbrNmtext, wwtext;
 	private TextField gbrNm, ww;
-	protected FlowPane leraar;
+	Scene root, leraarkeuze;
+	Stage thestage;
 	
 	
 	@Override
-	public void start(Stage primaryStage) throws Exception{
+	public void start(Stage primaryStage) throws IOException{
+		thestage = primaryStage;
 		logtext = new Label("Voer uw gegevens in!");
 		logtext.setMinWidth(500);
 		gbrNmtext = new Label("Gebruikers id");
@@ -36,6 +38,8 @@ public class App extends Application{
 		wwtext.setMinWidth(100);
 		ww = new TextField();
 		login = new Button("Login");
+		
+
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				LoginStudent logS1 = new LoginStudent(gbrNm.getText(), ww.getText());
@@ -43,9 +47,29 @@ public class App extends Application{
 				try {
 					if(logS1.checkLogin() == true){
 						System.out.println("U bent ingelogd.");
+						FlowPane leerling = new FlowPane();
+						leerling.setPadding(new Insets(10,10,10,10));
+						leerling.setVgap(4);
+						leerling.setHgap(4);
+						leerling.setPrefWrapLength(300);
+						leerling.getChildren().addAll(optieS1, optieS2, optieS3);
+						Scene leraarkeuze = new Scene(leerling, 350, 195);
+						thestage.setScene(leraarkeuze);
+						thestage.setTitle("Leerling");
+						thestage.show();
 					}
 					else if(logL1.checkLogin() == true){
 						System.out.println("U bent ingelogd.");
+						FlowPane leraar = new FlowPane();
+						leraar.setPadding(new Insets(10,10,10,10));
+						leraar.setVgap(4);
+						leraar.setHgap(4);
+						leraar.setPrefWrapLength(300);
+						leraar.getChildren().addAll(optieL1, optieL2, optieL3);
+						Scene leraarkeuze = new Scene(leraar, 350, 195);
+						thestage.setScene(leraarkeuze);
+						thestage.setTitle("Leraar");
+						thestage.show();
 					}
 					else{
 						logtext.setText("De gegevens zijn verkeerd!");
@@ -58,7 +82,9 @@ public class App extends Application{
 		optieL1 = new Button("Optie 1");
 		optieL2 = new Button("Optie 2");
 		optieL3 = new Button("Optie 3");
-		
+		optieS1 = new Button("Optie 1");
+		optieS2 = new Button("Optie 2");
+		optieS3 = new Button("Optie 3");
 		
 		
 		FlowPane root = new FlowPane();
@@ -76,12 +102,16 @@ public class App extends Application{
 		leraar.setPrefWrapLength(300);
 		leraar.getChildren().addAll(optieL1, optieL2, optieL3);
 		
+		Scene leraarkeuze = new Scene(leraar, 350, 195);
+		
 		
 		Scene scene = new Scene(root, 350, 195);
-		primaryStage.setTitle("Group Project");
+		primaryStage.setTitle("Login");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
+		
+
 	}
 	
 	public static void main(String[] args) {
