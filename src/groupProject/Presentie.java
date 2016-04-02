@@ -13,7 +13,7 @@ public class Presentie {
 
 	public void meldPresentie() throws IOException, FileNotFoundException {
 
-		FileWriter fw = new FileWriter("src/presentie.txt");
+		FileWriter fw = new FileWriter("src/presentie.txt", true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.write(leerlingNr + " was op " + datum + " afwezig bij de les.");
 		bw.newLine();
