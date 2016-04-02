@@ -18,6 +18,23 @@ public class Rooster {
 		return klasCode;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		boolean gelijkeObjecten = false;
+
+		if (obj instanceof Rooster) {
+			Rooster andereRooster = (Rooster) obj;
+			if (this.klasCode.equals(andereRooster.klasCode)) {
+				gelijkeObjecten = true;
+			}
+		}
+		return gelijkeObjecten;
+	}
+	
+	
 	public void zoekRooster() throws IOException, FileNotFoundException {
 		FileReader fr = new FileReader("src/rooster_C.txt");
 		BufferedReader br = new BufferedReader(fr);
@@ -43,7 +60,7 @@ public class Rooster {
 	}
 	@Override
 	public String toString() {
-		String s = klasCode + " Heeft het volgende rooster: \n";
+		String s = "";
 		for(int i = 0; i < hetRooster.size(); i++) {   
 		    s = s + hetRooster.get(i) + "\n";
 		}  

@@ -245,6 +245,17 @@ public class App extends Application{
 		optieS1 = new Button("Bekijk Rooster");
 		optieS1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				CheckKlas ck = new CheckKlas(gbrNm.getText());
+				try {
+					roosterlabelS.setText(ck.geefKlas() + " heeft het volgende rooster:");
+					Rooster r = new Rooster(ck.geefKlas());
+					r.zoekRooster();
+					roostertextS.setText(r.toString());
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}
+				
 				FlowPane roosterS = new FlowPane();
 				roosterS.setPadding(new Insets(10,10,10,10));
 				roosterS.setVgap(4);
