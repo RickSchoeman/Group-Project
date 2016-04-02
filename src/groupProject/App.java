@@ -20,11 +20,12 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie, terug;
-	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieNrlabel, presentieDatumlabel, presentieMeldenlabel;
-	private TextField gbrNm, ww, presentieNr;
+	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie, terugL, terugS, meldAfwezig;
+	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieNrlabel, presentieDatumlabel, presentieMeldenlabel
+	, afwezigPersoonlabel, afwezigRedenlabel, beterPersoonlabel, beterRedenlabel, afwezigLabel, afwezigDatumlabel;
+	private TextField gbrNm, ww, presentieNr, afwezigPersoon, afwezigReden, beterPersoon, beterReden;
 	private TextArea  roostertextL, roostertextS;
-	private DatePicker presentieDatum;
+	private DatePicker presentieDatum, afwezigDatum, beterMelden;
 	Scene root, leraarkeuze, roosterLeraar, presentieLeraar, afwezigLeraar, roosterLeerling, presentieLeerling, afwezigLeerling;
 	Stage thestage;
 	
@@ -53,17 +54,74 @@ public class App extends Application{
 		roostertextS.setEditable(false);
 		presentieMeldenlabel = new Label("Presentie Melden");
 		presentieMeldenlabel.setMinWidth(600);
-		presentieNrlabel = new Label("Student Nr.");
+		presentieNrlabel = new Label("Student Nr:");
 		presentieNrlabel.setMinWidth(300);
 		presentieNr = new TextField();
 		presentieNr.setMinWidth(300);
-		presentieDatumlabel = new Label("Datum");
+		presentieDatumlabel = new Label("Datum:");
 		presentieDatumlabel.setMinWidth(300);
 		presentieDatum = new DatePicker(LocalDate.now());
 		presentieDatum.setMinWidth(300);
 		meldPresentie = new Button("Meld");
-		terug = new Button("Terug");
-
+		afwezigPersoon = new TextField();
+		afwezigReden = new TextField();
+		beterPersoon = new TextField();
+		beterReden = new TextField();
+		afwezigPersoonlabel = new Label("Gebruikers id:");
+		afwezigRedenlabel = new Label("Reden:");
+		beterPersoonlabel = new Label("Gebruikers id:");
+		beterRedenlabel = new Label("Reden:");
+		afwezigPersoon.setMinWidth(300);
+		afwezigReden.setMinWidth(300);
+		beterPersoon.setMinWidth(300);
+		beterReden.setMinWidth(300);
+		afwezigPersoonlabel.setMinWidth(300);
+		afwezigRedenlabel.setMinWidth(300);
+		beterPersoonlabel.setMinWidth(300);
+		beterRedenlabel.setMinWidth(300);
+		afwezigLabel = new Label("Afwezigheid melden.");
+		afwezigLabel.setMinWidth(600);
+		meldAfwezig = new Button("Meld");
+		afwezigDatum = new DatePicker(LocalDate.now());
+		afwezigDatum.setMinWidth(300);
+		afwezigDatumlabel =new Label("Datum:");
+		afwezigDatumlabel.setMinWidth(300);
+		
+		
+		
+		
+		terugL = new Button("Terug");
+		terugL.setAlignment(Pos.BOTTOM_CENTER);
+		terugL.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane leraar = new FlowPane();
+				leraar.setPadding(new Insets(10,10,10,10));
+				leraar.setVgap(4);
+				leraar.setHgap(4);
+				leraar.setPrefWrapLength(300);
+				leraar.getChildren().addAll(optieL1, optieL2, optieL3);
+				Scene leraarkeuze = new Scene(leraar, 600, 800);
+				thestage.setScene(leraarkeuze);
+				thestage.setTitle("Leraar");
+				thestage.show();
+			}});
+		terugS = new Button("Terug");
+		terugS.setAlignment(Pos.BOTTOM_CENTER);
+		terugS.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				FlowPane leerling = new FlowPane();
+				leerling.setPadding(new Insets(10,10,10,10));
+				leerling.setVgap(4);
+				leerling.setHgap(4);
+				leerling.setPrefWrapLength(300);
+				leerling.getChildren().addAll(optieS1, optieS2, optieS3);
+				Scene leraarkeuze = new Scene(leerling, 600, 800);
+				thestage.setScene(leraarkeuze);
+				thestage.setTitle("Leerling");
+				thestage.show();
+			}});
+		
+		
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				LoginStudent logS1 = new LoginStudent(gbrNm.getText(), ww.getText());
@@ -119,7 +177,7 @@ public class App extends Application{
 				roosterL.setVgap(4);
 				roosterL.setHgap(4);
 				roosterL.setPrefWrapLength(300);
-				roosterL.getChildren().addAll(roosterlabelL, roostertextL);
+				roosterL.getChildren().addAll(roosterlabelL, roostertextL, terugL);
 				Scene roosterLeraar = new Scene(roosterL, 600, 800);
 				thestage.setScene(roosterLeraar);
 				thestage.setTitle("Bekijk Rooster");
@@ -147,7 +205,7 @@ public class App extends Application{
 				presentieL.setVgap(4);
 				presentieL.setHgap(4);
 				presentieL.setPrefWrapLength(300);
-				presentieL.getChildren().addAll(presentieMeldenlabel, presentieNrlabel, presentieNr, presentieDatumlabel, presentieDatum, meldPresentie);
+				presentieL.getChildren().addAll(presentieMeldenlabel, presentieNrlabel, presentieNr, presentieDatumlabel, presentieDatum, meldPresentie, terugL);
 				Scene presentieLeraar = new Scene(presentieL, 600, 800);
 				thestage.setScene(presentieLeraar);
 				thestage.setTitle("Presentie Melden");
@@ -158,15 +216,28 @@ public class App extends Application{
 		optieL3 = new Button("Afwezig Melden");
 		optieL3.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				meldAfwezig.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						if(!afwezigPersoon.getText().equals("") && !afwezigReden.getText().equals("")){
+							Afmelden a1 = new Afmelden(afwezigPersoon.getText(), afwezigDatum.getValue(), afwezigReden.getText());
+							try {
+								a1.meldAfwezigheid();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							}
+							else{
+								afwezigLabel.setText("U heeft de gegevens verkeerd ingevuld");
+							}}});
 				FlowPane afwezigL = new FlowPane();
 				afwezigL.setPadding(new Insets(10,10,10,10));
 				afwezigL.setVgap(4);
 				afwezigL.setHgap(4);
 				afwezigL.setPrefWrapLength(300);
-				afwezigL.getChildren().addAll(optieL1, optieL2, optieL3);
+				afwezigL.getChildren().addAll(afwezigLabel, afwezigPersoonlabel, afwezigPersoon, afwezigDatumlabel, afwezigDatum, afwezigRedenlabel, afwezigReden, meldAfwezig, terugL);
 				Scene afwezigLeraar = new Scene(afwezigL, 600, 800);
 				thestage.setScene(afwezigLeraar);
-				thestage.setTitle("Bekijk Rooster");
+				thestage.setTitle("Afwezig Melden");
 				thestage.show();
 			}
 			});
@@ -179,7 +250,7 @@ public class App extends Application{
 				roosterS.setVgap(4);
 				roosterS.setHgap(4);
 				roosterS.setPrefWrapLength(300);
-				roosterS.getChildren().addAll(roosterlabelS, roostertextS);
+				roosterS.getChildren().addAll(roosterlabelS, roostertextS, terugS);
 				Scene roosterLeerling = new Scene(roosterS, 600, 800);
 				thestage.setScene(roosterLeerling);
 				thestage.setTitle("Bekijk Rooster");
@@ -195,7 +266,7 @@ public class App extends Application{
 				presentieS.setVgap(4);
 				presentieS.setHgap(4);
 				presentieS.setPrefWrapLength(300);
-				presentieS.getChildren().addAll(optieL1, optieL2, optieL3);
+				presentieS.getChildren().addAll(optieL1, optieL2, optieL3, terugS);
 				Scene presentieLeerling = new Scene(presentieS, 600, 800);
 				thestage.setScene(presentieLeerling);
 				thestage.setTitle("Bekijk Rooster");
@@ -211,7 +282,7 @@ public class App extends Application{
 				afwezigS.setVgap(4);
 				afwezigS.setHgap(4);
 				afwezigS.setPrefWrapLength(300);
-				afwezigS.getChildren().addAll(optieL1, optieL2, optieL3);
+				afwezigS.getChildren().addAll(optieL1, optieL2, optieL3, terugS);
 				Scene afwezigLeerling = new Scene(afwezigS, 600, 800);
 				thestage.setScene(afwezigLeerling);
 				thestage.setTitle("Bekijk Rooster");

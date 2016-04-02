@@ -36,7 +36,10 @@ public class Main{
 		Presentie p1 = new Presentie("1682250", LocalDate.now());
 		
 		Afmelden a1 = new Afmelden("1682250", LocalDate.now(), "Ziek");
+		
 		Betermelden b1 = new Betermelden("1682250", LocalDate.now(), "Beter");
+		
+		CheckKlas ck = new CheckKlas("1682250");
 		
 		
 		k1.vulKlas();
@@ -91,7 +94,8 @@ public class Main{
 		if(b1.checkMelding() == true){
 			b1.meldPresentie();
 		}
-
+		
+		System.out.println(ck.geefKlas());
 	}
 	
 }
