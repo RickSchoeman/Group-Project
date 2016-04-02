@@ -94,12 +94,9 @@ public class Main{
 		a1.meldAfwezigheid();
 		if(b1.checkMelding() == true && b1.alBeter() == true){
 			b1.meldBeter();
-		}
-		
-<<<<<<< HEAD
-=======
-		System.out.println(ck.geefKlas());
->>>>>>> origin/master
 	}
 	
+
+	}
 }
+

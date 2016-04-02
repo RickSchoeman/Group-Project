@@ -43,12 +43,15 @@ public class Betermelden {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate date = LocalDate.parse(values[1], formatter);
 			regel = br.readLine();
-			if (persoon.equals(CheckPersoon) && datum.isAfter(date)){
-				return true;
+			if (persoon.equals(CheckPersoon)){ 	
+				if (datum.isAfter(date)){
+					return true;
+				}
+				
 			}
-			else{
-				continue;
-			}
+				else{
+					return false;
+				}
 		}
 		br.close();
 		return false;
