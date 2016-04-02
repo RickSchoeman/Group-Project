@@ -14,14 +14,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import java.io.*;
 
 public class App extends Application{
 	
 	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3;
-	private Label logtext, gbrNmtext, wwtext;
-	private TextField gbrNm, ww;
+	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieNrlabel, PresentieDatumlabel;
+	private TextField gbrNm, ww, presentieNr;
+	private TextArea  roostertextL, roostertextS;
+	private DatePicker presentieDatum;
 	Scene root, leraarkeuze, roosterLeraar, presentieLeraar, afwezigLeraar, roosterLeerling, presentieLeerling, afwezigLeerling;
 	Stage thestage;
 	
@@ -38,6 +41,19 @@ public class App extends Application{
 		wwtext.setMinWidth(100);
 		ww = new TextField();
 		login = new Button("Login");
+		roosterlabelL = new Label();
+		roosterlabelL.setMinWidth(500);
+		roostertextL = new TextArea();
+		roostertextL.setMinSize(500, 700);
+		roostertextL.setEditable(false);
+		roosterlabelS = new Label();
+		roosterlabelS.setMinWidth(500);
+		roostertextS = new TextArea();
+		roostertextS.setMinSize(500, 700);
+		roostertextS.setEditable(false);
+		presentieNrlabel = new Label("Student Nr.");
+		presentieNr = new TextField();
+		presentieDatum = new DatePicker();
 
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -52,7 +68,7 @@ public class App extends Application{
 						leerling.setHgap(4);
 						leerling.setPrefWrapLength(300);
 						leerling.getChildren().addAll(optieS1, optieS2, optieS3);
-						Scene leraarkeuze = new Scene(leerling, 350, 195);
+						Scene leraarkeuze = new Scene(leerling, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leerling");
 						thestage.show();
@@ -65,7 +81,7 @@ public class App extends Application{
 						leraar.setHgap(4);
 						leraar.setPrefWrapLength(300);
 						leraar.getChildren().addAll(optieL1, optieL2, optieL3);
-						Scene leraarkeuze = new Scene(leraar, 350, 195);
+						Scene leraarkeuze = new Scene(leraar, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leraar");
 						thestage.show();
@@ -81,19 +97,26 @@ public class App extends Application{
 		optieL1 = new Button("Bekijk Rooster");
 		optieL1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				Vak v = new Vak(gbrNm.getText());
+				try {
+					v.vulVak();
+					roostertextL.setText(v.toString());
+					roosterlabelL.setText(gbrNm.getText() + " heeft het volgende rooster:");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				FlowPane roosterL = new FlowPane();
 				roosterL.setPadding(new Insets(10,10,10,10));
 				roosterL.setVgap(4);
 				roosterL.setHgap(4);
 				roosterL.setPrefWrapLength(300);
-				roosterL.getChildren().addAll(optieL1, optieL2, optieL3);
-				Scene roosterLeraar = new Scene(roosterL, 350, 195);
+				roosterL.getChildren().addAll(roosterlabelL, roostertextL);
+				Scene roosterLeraar = new Scene(roosterL, 600, 800);
 				thestage.setScene(roosterLeraar);
 				thestage.setTitle("Bekijk Rooster");
 				thestage.show();
 			}
 			});
-		
 		optieL2 = new Button("Presentie Melden");
 		optieL2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -103,7 +126,7 @@ public class App extends Application{
 				presentieL.setHgap(4);
 				presentieL.setPrefWrapLength(300);
 				presentieL.getChildren().addAll(optieL1, optieL2, optieL3);
-				Scene presentieLeraar = new Scene(presentieL, 350, 195);
+				Scene presentieLeraar = new Scene(presentieL, 600, 800);
 				thestage.setScene(presentieLeraar);
 				thestage.setTitle("Presentie Melden");
 				thestage.show();
@@ -119,7 +142,7 @@ public class App extends Application{
 				afwezigL.setHgap(4);
 				afwezigL.setPrefWrapLength(300);
 				afwezigL.getChildren().addAll(optieL1, optieL2, optieL3);
-				Scene afwezigLeraar = new Scene(afwezigL, 350, 195);
+				Scene afwezigLeraar = new Scene(afwezigL, 600, 800);
 				thestage.setScene(afwezigLeraar);
 				thestage.setTitle("Bekijk Rooster");
 				thestage.show();
@@ -134,8 +157,8 @@ public class App extends Application{
 				roosterS.setVgap(4);
 				roosterS.setHgap(4);
 				roosterS.setPrefWrapLength(300);
-				roosterS.getChildren().addAll(optieL1, optieL2, optieL3);
-				Scene roosterLeerling = new Scene(roosterS, 350, 195);
+				roosterS.getChildren().addAll(roosterlabelS, roostertextS);
+				Scene roosterLeerling = new Scene(roosterS, 600, 800);
 				thestage.setScene(roosterLeerling);
 				thestage.setTitle("Bekijk Rooster");
 				thestage.show();
@@ -151,7 +174,7 @@ public class App extends Application{
 				presentieS.setHgap(4);
 				presentieS.setPrefWrapLength(300);
 				presentieS.getChildren().addAll(optieL1, optieL2, optieL3);
-				Scene presentieLeerling = new Scene(presentieS, 350, 195);
+				Scene presentieLeerling = new Scene(presentieS, 600, 800);
 				thestage.setScene(presentieLeerling);
 				thestage.setTitle("Bekijk Rooster");
 				thestage.show();
@@ -167,7 +190,7 @@ public class App extends Application{
 				afwezigS.setHgap(4);
 				afwezigS.setPrefWrapLength(300);
 				afwezigS.getChildren().addAll(optieL1, optieL2, optieL3);
-				Scene afwezigLeerling = new Scene(afwezigS, 350, 195);
+				Scene afwezigLeerling = new Scene(afwezigS, 600, 800);
 				thestage.setScene(afwezigLeerling);
 				thestage.setTitle("Bekijk Rooster");
 				thestage.show();
@@ -183,7 +206,7 @@ public class App extends Application{
 		root.setPrefWrapLength(300);
 		root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
 		
-		Scene scene = new Scene(root, 350, 195);
+		Scene scene = new Scene(root, 600, 800);
 		primaryStage.setTitle("Login");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);

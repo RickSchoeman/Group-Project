@@ -62,7 +62,7 @@ public class Vak {
 	
 	@Override
 	public String toString() {
-		String s = leraar + " geeft op de volgende data de volgende vakken: \n";
+		String s = "";
 		for(int i = 0; i < deLeraren.size(); i++) {   
 		    s = s + deLeraren.get(i) + "\n";
 		}  
