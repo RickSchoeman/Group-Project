@@ -32,29 +32,6 @@ public class Betermelden {
 		}
 		return gelijkeObjecten;
 	}
-	
-	public boolean alBeter() throws IOException, FileNotFoundException {
-		FileReader fr = new FileReader("src/betermelden.txt");
-		BufferedReader br = new BufferedReader(fr);
-		String regel = br.readLine();
-		while (regel != null) {
-			String[] values = regel.split(",");
-			String CheckPersoon = values[0];
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-			LocalDate date = LocalDate.parse(values[1], formatter);
-			regel = br.readLine();
-			if (regel == ""){
-			return true;
-			}
-			else if (persoon.equals(CheckPersoon) && datum.isAfter(date)){ 	
-				return true;
-				}
-				
-			}
-				
-		br.close();
-		return false;	
-		}
 		
 	
 	public boolean checkMelding() throws IOException, FileNotFoundException {
