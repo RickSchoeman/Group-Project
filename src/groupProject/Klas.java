@@ -30,9 +30,36 @@ public class Klas {
 			regel = br.readLine();
 		}
 		br.close();
-		
-		
 	}
+	
+	public boolean checkKlas(){
+		if(klasCode.equals("SIE-V1A")){
+			return true;
+		}
+		else if(klasCode.equals("SIE-V1B")){
+			return true;
+		}
+		else if(klasCode.equals("SIE-V1C")){
+			return true;
+		}
+		else if(klasCode.equals("SIE-V1D")){
+			return true;
+		}
+		else if(klasCode.equals("SIE-V1E")){
+			return true;
+		}
+		else if(klasCode.equals("SIE-V1F")){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public ArrayList<Leerling> getDeLeerlingen() {
+		return deLeerlingen;
+	}
+	
 	@Override
 	public String toString() {
 		String s = klasCode + " bevat de volgende leerlingen: \n";

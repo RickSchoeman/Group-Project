@@ -33,7 +33,7 @@ public class Main{
 		
 		LoginLeraar logL1 = new LoginLeraar("Alex Jongman", "123");
 		
-		Presentie p1 = new Presentie("1682250", LocalDate.now());
+		Presentie p1 = new Presentie("1682250", LocalDate.now(), "Present");
 		
 		Afmelden a1 = new Afmelden("1682250", LocalDate.now(), "Ziek");
 		
