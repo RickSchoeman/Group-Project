@@ -18,7 +18,9 @@ public class Presentie {
 
 		FileWriter fw = new FileWriter("src/presentie.txt", true);
 		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(leerling + "," + datum + "," + aanwezigheid);
+		String[] values = leerling.split(" | ");
+		String nr = values[0];
+		bw.write(nr + "," + datum + "," + aanwezigheid);
 		bw.newLine();
 		bw.close();
 	}

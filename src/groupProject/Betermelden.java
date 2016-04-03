@@ -40,7 +40,7 @@ public class Betermelden {
 		while (regel != null) {
 			String[] values = regel.split(",");
 			String CheckPersoon = values[0];
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDate date = LocalDate.parse(values[1], formatter);
 			regel = br.readLine();
 			if (persoon.equals(CheckPersoon)){ 	

@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -22,14 +23,17 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen, vulKlas;
+	private Button login, optieL1, optieL2, optieL3, optieS1, optieS2, optieS3,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen, vulKlas,
+	presentieInzienKnop;
 	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieKlaslabel, presentieMeldenlabel
-	, afwezigPersoonlabel, afwezigRedenlabel, beterPersoonlabel, beterRedenlabel, afwezigLabel, afwezigDatumlabel, presentBoxlabel;
-	private TextField gbrNm, ww, presentieKlas, afwezigPersoon, afwezigReden, beterPersoon, beterReden;
-	private TextArea  roostertextL, roostertextS;
-	private DatePicker afwezigDatum, beterMelden;
+	, afwezigPersoonlabel, afwezigRedenlabel, beterPersoonlabel, beterRedenlabel, afwezigLabel, afwezigDatumlabel, presentBoxlabel, 
+	presentieInzienLabel;
+	private TextField gbrNm, presentieKlas, afwezigPersoon, afwezigReden, beterPersoon, beterReden;
+	private TextArea  roostertextL, roostertextS, presenties;
+	private DatePicker afwezigDatum, beterMeldenDatum, presentieInzienDatum;
 	private ListView<Leerling> presentieLijst;
 	private CheckBox present;
+	private PasswordField ww;
 	Scene root, leraarkeuze, roosterLeraar, presentieLeraar, afwezigLeraar, roosterLeerling, presentieLeerling, afwezigLeerling;
 	Stage thestage;
 	
@@ -44,7 +48,7 @@ public class App extends Application{
 		gbrNm = new TextField();
 		wwtext = new Label("Wachtwoord");
 		wwtext.setMinWidth(100);
-		ww = new TextField();
+		ww = new PasswordField();
 		login = new Button("Login");
 		roosterlabelL = new Label();
 		roosterlabelL.setMinWidth(500);
@@ -92,6 +96,10 @@ public class App extends Application{
 		vulKlas = new Button("Vul klas");
 		presentBoxlabel = new Label("Present:");
 		present = new CheckBox();
+		presentieInzienDatum = new DatePicker(LocalDate.now());
+		presentieInzienKnop = new Button("Inzien");
+		presentieInzienLabel = new Label("PresentieInzien");
+		presenties = new TextArea();
 		
 		uitloggen.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -320,12 +328,25 @@ public class App extends Application{
 		optieS2 = new Button("Presentie bekijken");
 		optieS2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				presenties.setText("");
+				presentieInzienDatum.setValue(LocalDate.now());
+				presentieInzienKnop.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						PresentieBekijken pb = new PresentieBekijken(gbrNm.getText(), presentieInzienDatum.getValue());
+						try {
+							pb.presentieInzien();
+							presenties.setText(pb.toString());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}});
+				
 				FlowPane presentieS = new FlowPane();
 				presentieS.setPadding(new Insets(10,10,10,10));
 				presentieS.setVgap(4);
 				presentieS.setHgap(4);
 				presentieS.setPrefWrapLength(300);
-				presentieS.getChildren().addAll(optieL1, optieL2, optieL3, terugS);
+				presentieS.getChildren().addAll(presentieInzienLabel, presentieInzienDatum, presenties, presentieInzienKnop, terugS);
 				Scene presentieLeerling = new Scene(presentieS, 600, 800);
 				thestage.setScene(presentieLeerling);
 				thestage.setTitle("Bekijk Rooster");

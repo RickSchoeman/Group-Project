@@ -41,6 +41,8 @@ public class Main{
 		
 		CheckKlas ck = new CheckKlas("1682250");
 		
+		PresentieBekijken pb = new PresentieBekijken("1682250", LocalDate.now());
+		
 		
 		
 		k1.vulKlas();
@@ -94,9 +96,10 @@ public class Main{
 		a1.meldAfwezigheid();
 		if(b1.checkMelding() == true && b1.alBeter() == true){
 			b1.meldBeter();
-
-	}
-	
+		}
+		
+		pb.presentieInzien();
+		System.out.println(pb.toString());
 
 	}
 }
