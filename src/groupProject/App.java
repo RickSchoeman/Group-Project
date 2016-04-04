@@ -22,6 +22,8 @@ import java.io.*;
 
 public class App extends Application{
 	
+	//Aanmaken van de knoppen, labels, enz.
+	
 	private Button login, optieL1, optieL2, optieL3, optieL4, optieS1, optieS2, optieS3, optieS4,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen, vulKlas,
 	presentieInzienKnop, meldBeter;
 	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieKlaslabel, presentieMeldenlabel
@@ -39,6 +41,9 @@ public class App extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException{
+		
+		//Het aanmaken compleet maken
+		
 		thestage = primaryStage;
 		logtext = new Label("Voer uw gegevens in!");
 		logtext.setMinWidth(500);
@@ -101,6 +106,9 @@ public class App extends Application{
 		beterLabel = new Label("Beter Melden");
 		beterLabel.setMinWidth(600);
 		
+		
+		//Knop voor het uitloggen
+		
 		uitloggen.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				FlowPane root = new FlowPane();
@@ -117,7 +125,9 @@ public class App extends Application{
 				gbrNm.setText("");
 				ww.setText("");
 			}});
-
+		
+		//Knop voor teruggaan als leraar
+		
 		terugL = new Button("Terug");
 		terugL.setAlignment(Pos.BOTTOM_CENTER);
 		terugL.setOnAction(new EventHandler<ActionEvent>() {
@@ -133,6 +143,9 @@ public class App extends Application{
 				thestage.setTitle("Leraar");
 				thestage.show();
 			}});
+		
+		//Knop voor teruggaan als leerling
+		
 		terugS = new Button("Terug");
 		terugS.setAlignment(Pos.BOTTOM_CENTER);
 		terugS.setOnAction(new EventHandler<ActionEvent>() {
@@ -149,6 +162,7 @@ public class App extends Application{
 				thestage.show();
 			}});
 		
+		//Knop voor login
 		
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -189,6 +203,9 @@ public class App extends Application{
 				}
 			}
 			});
+		
+		//Knop voor rooster bekijken leraar
+		
 		optieL1 = new Button("Bekijk Rooster");
 		optieL1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -212,6 +229,9 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Knop voor presentie melden bekijken leraar
+		
 		optieL2 = new Button("Presentie Melden");
 		optieL2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -269,6 +289,8 @@ public class App extends Application{
 			}
 			});
 		
+		//Knop voor afwezig melden leraar
+		
 		optieL3 = new Button("Afwezig Melden");
 		optieL3.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -300,6 +322,8 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Knop voor beter melden leraar
 		
 		optieL4 = new Button("Beter Melden");
 		optieL4.setOnAction(new EventHandler<ActionEvent>() {
@@ -334,6 +358,8 @@ public class App extends Application{
 			}
 			});
 		
+		//Knop voor rooster bekijken leerling
+		
 		optieS1 = new Button("Bekijk Rooster");
 		optieS1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -360,6 +386,8 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Knop voor presentie bekijken leerling
 		
 		optieS2 = new Button("Presentie bekijken");
 		optieS2.setOnAction(new EventHandler<ActionEvent>() {
@@ -389,6 +417,8 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Knop voor afwezig melden leerling
 		
 		optieS3 = new Button("Afwezig melden");
 		optieS3.setOnAction(new EventHandler<ActionEvent>() {
@@ -422,6 +452,8 @@ public class App extends Application{
 			}
 			});
 		
+		//Knop voor beter melden leerling
+		
 		optieS4 = new Button("Beter melden");
 		optieS4.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -454,7 +486,7 @@ public class App extends Application{
 			}
 			});
 		
-		
+		//Het inlogscherm
 		
 		FlowPane root = new FlowPane();
 		root.setPadding(new Insets(10,10,10,10));
