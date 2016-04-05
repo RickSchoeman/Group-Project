@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -22,23 +24,30 @@ import java.io.*;
 
 public class App extends Application{
 	
-	private Button login, optieL1, optieL2, optieL3, optieL4, optieS1, optieS2, optieS3, optieS4,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen, vulKlas,
-	presentieInzienKnop, meldBeter;
+	//Aanmaken van de knoppen, labels, enz.
+	
+	private Button login, optieL1, optieL2, optieL3, optieL4, optieL5, optieS1, optieS2, optieS3, optieS4, optieS5,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen, vulKlas,
+	presentieInzienKnop, meldBeter, afwezigheidInzienKnop;
 	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieKlaslabel, presentieMeldenlabel
 	, afwezigRedenlabel, beterPersoonlabel, beterRedenlabel, afwezigLabel, afwezigDatumlabel, 
-	presentieInzienLabel, presentieMeldenUitleg, beterDatumlabel, beterLabel;
+	presentieInzienLabel, presentieMeldenUitleg, beterDatumlabel, beterLabel, afwezigheidInzienLabel, afwezigheidLabel;
 	private TextField gbrNm, presentieKlas, afwezigReden, beterPersoon, beterReden;
-	private TextArea  roostertextL, roostertextS, presenties;
-	private DatePicker afwezigDatum, beterDatum, presentieInzienDatum;
+	private TextArea  roostertextL, roostertextS, presenties, afwezigheid;
+	private DatePicker afwezigDatum, beterDatum, presentieInzienDatum, afwezigheidInzienDatum;
 	private ListView<Leerling> presentieLijst;
 	private CheckBox present;
 	private PasswordField ww;
+	private Image inlogFoto, menuFoto;
+	private ImageView inlogFotoView, menuFotoView;
 	Scene root, leraarkeuze, roosterLeraar, presentieLeraar, afwezigLeraar, roosterLeerling, presentieLeerling, afwezigLeerling;
 	Stage thestage;
 	
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException{
+		
+		//Het aanmaken compleet maken
+		
 		thestage = primaryStage;
 		logtext = new Label("Voer uw gegevens in!");
 		logtext.setMinWidth(500);
@@ -100,6 +109,21 @@ public class App extends Application{
 		meldBeter = new Button("Meld Beter");
 		beterLabel = new Label("Beter Melden");
 		beterLabel.setMinWidth(600);
+		inlogFoto = new Image("file:src/hu-og.png");
+		menuFoto = new Image("file:src/user1.png");
+		inlogFotoView = new ImageView(inlogFoto);
+		menuFotoView = new ImageView(menuFoto);
+		afwezigheidInzienDatum = new DatePicker(LocalDate.now());
+		afwezigheidInzienDatum.setMaxWidth(300);
+		afwezigheidInzienKnop = new Button("Inzien");
+		afwezigheidInzienLabel = new Label("Maand van inzien:");
+		afwezigheidInzienLabel.setMaxWidth(300);
+		afwezigheidLabel = new Label("Afwezigheid inzien");
+		afwezigheidLabel.setMinWidth(600);
+		afwezigheid = new TextArea();
+		
+		
+		//Knop voor het uitloggen
 		
 		uitloggen.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -108,7 +132,7 @@ public class App extends Application{
 				root.setVgap(4);
 				root.setHgap(4);
 				root.setPrefWrapLength(300);
-				root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
+				root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login, inlogFotoView);
 				Scene scene = new Scene(root, 600, 800);
 				primaryStage.setTitle("Login");
 				primaryStage.setScene(scene);
@@ -117,7 +141,9 @@ public class App extends Application{
 				gbrNm.setText("");
 				ww.setText("");
 			}});
-
+		
+		//Knop voor teruggaan als leraar
+		
 		terugL = new Button("Terug");
 		terugL.setAlignment(Pos.BOTTOM_CENTER);
 		terugL.setOnAction(new EventHandler<ActionEvent>() {
@@ -127,12 +153,15 @@ public class App extends Application{
 				leraar.setVgap(4);
 				leraar.setHgap(4);
 				leraar.setPrefWrapLength(300);
-				leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen);
+				leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, optieL5, uitloggen, menuFotoView);
 				Scene leraarkeuze = new Scene(leraar, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leraar");
 				thestage.show();
 			}});
+		
+		//Knop voor teruggaan als leerling
+		
 		terugS = new Button("Terug");
 		terugS.setAlignment(Pos.BOTTOM_CENTER);
 		terugS.setOnAction(new EventHandler<ActionEvent>() {
@@ -142,13 +171,14 @@ public class App extends Application{
 				leerling.setVgap(4);
 				leerling.setHgap(4);
 				leerling.setPrefWrapLength(300);
-				leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen);
+				leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, optieS5, uitloggen, menuFotoView);
 				Scene leraarkeuze = new Scene(leerling, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leerling");
 				thestage.show();
 			}});
 		
+		//Knop voor login
 		
 		login.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -162,7 +192,7 @@ public class App extends Application{
 						leerling.setVgap(4);
 						leerling.setHgap(4);
 						leerling.setPrefWrapLength(300);
-						leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen);
+						leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, optieS5, uitloggen, menuFotoView);
 						Scene leraarkeuze = new Scene(leerling, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leerling");
@@ -175,7 +205,7 @@ public class App extends Application{
 						leraar.setVgap(4);
 						leraar.setHgap(4);
 						leraar.setPrefWrapLength(300);
-						leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen);
+						leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, optieL5, uitloggen, menuFotoView);
 						Scene leraarkeuze = new Scene(leraar, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leraar");
@@ -189,6 +219,9 @@ public class App extends Application{
 				}
 			}
 			});
+		
+		//Knop voor rooster bekijken leraar
+		
 		optieL1 = new Button("Bekijk Rooster");
 		optieL1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -212,6 +245,9 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Knop voor presentie melden bekijken leraar
+		
 		optieL2 = new Button("Presentie Melden");
 		optieL2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -269,6 +305,8 @@ public class App extends Application{
 			}
 			});
 		
+		//Knop voor afwezig melden leraar
+		
 		optieL3 = new Button("Afwezig Melden");
 		optieL3.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -300,6 +338,8 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Knop voor beter melden leraar
 		
 		optieL4 = new Button("Beter Melden");
 		optieL4.setOnAction(new EventHandler<ActionEvent>() {
@@ -334,6 +374,40 @@ public class App extends Application{
 			}
 			});
 		
+		
+		//Afwezigheid inzien Leraar
+		
+		optieL5 = new Button("Afwezigheid bekijken");
+		optieL5.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				afwezigheid.setText("");
+				afwezigheidInzienDatum.setValue(LocalDate.now());
+				afwezigheidInzienKnop.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						AfwezigheidInzien aI = new AfwezigheidInzien(gbrNm.getText(), afwezigheidInzienDatum.getValue());
+						try {
+							aI.afwezigInzien();
+							afwezigheid.setText(aI.toString());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}});
+				
+				FlowPane afwezigheidInzienL = new FlowPane();
+				afwezigheidInzienL.setPadding(new Insets(10,10,10,10));
+				afwezigheidInzienL.setVgap(4);
+				afwezigheidInzienL.setHgap(4);
+				afwezigheidInzienL.setPrefWrapLength(300);
+				afwezigheidInzienL.getChildren().addAll(afwezigheidLabel,afwezigheidInzienLabel, afwezigheidInzienDatum, afwezigheid, afwezigheidInzienKnop, terugL);
+				Scene afwezigheidInzienLeraar = new Scene(afwezigheidInzienL, 600, 800);
+				thestage.setScene(afwezigheidInzienLeraar);
+				thestage.setTitle("Afwezigheid Bekijken");
+				thestage.show();
+			}
+			});
+		
+		//Knop voor rooster bekijken leerling
+		
 		optieS1 = new Button("Bekijk Rooster");
 		optieS1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -360,6 +434,9 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		
+		//Knop voor presentie bekijken leerling
 		
 		optieS2 = new Button("Presentie bekijken");
 		optieS2.setOnAction(new EventHandler<ActionEvent>() {
@@ -389,6 +466,8 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Knop voor afwezig melden leerling
 		
 		optieS3 = new Button("Afwezig melden");
 		optieS3.setOnAction(new EventHandler<ActionEvent>() {
@@ -422,6 +501,8 @@ public class App extends Application{
 			}
 			});
 		
+		//Knop voor beter melden leerling
+		
 		optieS4 = new Button("Beter melden");
 		optieS4.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -454,14 +535,46 @@ public class App extends Application{
 			}
 			});
 		
+		//Afwezigheid inzien Leraar
 		
+				optieS5 = new Button("Afwezigheid bekijken");
+				optieS5.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						afwezigheid.setText("");
+						afwezigheidInzienDatum.setValue(LocalDate.now());
+						afwezigheidInzienKnop.setOnAction(new EventHandler<ActionEvent>() {
+							public void handle(ActionEvent event) {
+								AfwezigheidInzien aI = new AfwezigheidInzien(gbrNm.getText(), afwezigheidInzienDatum.getValue());
+								try {
+									aI.afwezigInzien();
+									afwezigheid.setText(aI.toString());
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}});
+						
+						FlowPane afwezigheidInzienS = new FlowPane();
+						afwezigheidInzienS.setPadding(new Insets(10,10,10,10));
+						afwezigheidInzienS.setVgap(4);
+						afwezigheidInzienS.setHgap(4);
+						afwezigheidInzienS.setPrefWrapLength(300);
+						afwezigheidInzienS.getChildren().addAll(afwezigheidLabel, afwezigheidInzienLabel, afwezigheidInzienDatum, afwezigheid, afwezigheidInzienKnop, terugL);
+						Scene afwezigheidInzienLeerling = new Scene(afwezigheidInzienS, 600, 800);
+						thestage.setScene(afwezigheidInzienLeerling);
+						thestage.setTitle("Afwezigheid Bekijken");
+						thestage.show();
+					}
+					});
+		
+		
+		//Het inlogscherm
 		
 		FlowPane root = new FlowPane();
 		root.setPadding(new Insets(10,10,10,10));
 		root.setVgap(4);
 		root.setHgap(4);
 		root.setPrefWrapLength(300);
-		root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
+		root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login, inlogFotoView);
 		
 		Scene scene = new Scene(root, 600, 800);
 		primaryStage.setTitle("Login");
