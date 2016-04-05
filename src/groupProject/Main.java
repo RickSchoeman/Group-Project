@@ -93,8 +93,9 @@ public class Main{
 		System.out.println(logL1.checkLogin());
 		
 		p1.meldPresentie();
-		if (a1.alAfwezig() == true)
+		if (a1.alAfwezig() == true){
 			a1.meldAfwezigheid();
+		}
 		if(b1.checkMelding() == true && b1.alBeter() == true){
 			b1.meldBeter();
 		}
