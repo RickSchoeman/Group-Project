@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -35,6 +37,8 @@ public class App extends Application{
 	private ListView<Leerling> presentieLijst;
 	private CheckBox present;
 	private PasswordField ww;
+	private Image inlogFoto, menuFoto;
+	private ImageView inlogFotoView, menuFotoView;
 	Scene root, leraarkeuze, roosterLeraar, presentieLeraar, afwezigLeraar, roosterLeerling, presentieLeerling, afwezigLeerling;
 	Stage thestage;
 	
@@ -105,6 +109,10 @@ public class App extends Application{
 		meldBeter = new Button("Meld Beter");
 		beterLabel = new Label("Beter Melden");
 		beterLabel.setMinWidth(600);
+		inlogFoto = new Image("file:src/hu-og.png");
+		menuFoto = new Image("file:src/user1.png");
+		inlogFotoView = new ImageView(inlogFoto);
+		menuFotoView = new ImageView(menuFoto);
 		
 		
 		//Knop voor het uitloggen
@@ -116,7 +124,7 @@ public class App extends Application{
 				root.setVgap(4);
 				root.setHgap(4);
 				root.setPrefWrapLength(300);
-				root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
+				root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login, inlogFotoView);
 				Scene scene = new Scene(root, 600, 800);
 				primaryStage.setTitle("Login");
 				primaryStage.setScene(scene);
@@ -137,7 +145,7 @@ public class App extends Application{
 				leraar.setVgap(4);
 				leraar.setHgap(4);
 				leraar.setPrefWrapLength(300);
-				leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen);
+				leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen, menuFotoView);
 				Scene leraarkeuze = new Scene(leraar, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leraar");
@@ -155,7 +163,7 @@ public class App extends Application{
 				leerling.setVgap(4);
 				leerling.setHgap(4);
 				leerling.setPrefWrapLength(300);
-				leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen);
+				leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen, menuFotoView);
 				Scene leraarkeuze = new Scene(leerling, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leerling");
@@ -176,7 +184,7 @@ public class App extends Application{
 						leerling.setVgap(4);
 						leerling.setHgap(4);
 						leerling.setPrefWrapLength(300);
-						leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen);
+						leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen, menuFotoView);
 						Scene leraarkeuze = new Scene(leerling, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leerling");
@@ -189,7 +197,7 @@ public class App extends Application{
 						leraar.setVgap(4);
 						leraar.setHgap(4);
 						leraar.setPrefWrapLength(300);
-						leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen);
+						leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen, menuFotoView);
 						Scene leraarkeuze = new Scene(leraar, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leraar");
@@ -493,7 +501,7 @@ public class App extends Application{
 		root.setVgap(4);
 		root.setHgap(4);
 		root.setPrefWrapLength(300);
-		root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login);
+		root.getChildren().addAll(logtext, gbrNmtext, gbrNm, wwtext, ww, login, inlogFotoView);
 		
 		Scene scene = new Scene(root, 600, 800);
 		primaryStage.setTitle("Login");
