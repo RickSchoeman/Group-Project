@@ -26,14 +26,14 @@ public class App extends Application{
 	
 	//Aanmaken van de knoppen, labels, enz.
 	
-	private Button login, optieL1, optieL2, optieL3, optieL4, optieS1, optieS2, optieS3, optieS4,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen, vulKlas,
-	presentieInzienKnop, meldBeter;
+	private Button login, optieL1, optieL2, optieL3, optieL4, optieL5, optieS1, optieS2, optieS3, optieS4, optieS5,  meldPresentie, terugL, terugS, meldAfwezig, uitloggen, vulKlas,
+	presentieInzienKnop, meldBeter, afwezigheidInzienKnop;
 	private Label logtext, gbrNmtext, wwtext, roosterlabelL, roosterlabelS, presentieKlaslabel, presentieMeldenlabel
 	, afwezigRedenlabel, beterPersoonlabel, beterRedenlabel, afwezigLabel, afwezigDatumlabel, 
-	presentieInzienLabel, presentieMeldenUitleg, beterDatumlabel, beterLabel;
+	presentieInzienLabel, presentieMeldenUitleg, beterDatumlabel, beterLabel, afwezigheidInzienLabel, afwezigheidLabel;
 	private TextField gbrNm, presentieKlas, afwezigReden, beterPersoon, beterReden;
-	private TextArea  roostertextL, roostertextS, presenties;
-	private DatePicker afwezigDatum, beterDatum, presentieInzienDatum;
+	private TextArea  roostertextL, roostertextS, presenties, afwezigheid;
+	private DatePicker afwezigDatum, beterDatum, presentieInzienDatum, afwezigheidInzienDatum;
 	private ListView<Leerling> presentieLijst;
 	private CheckBox present;
 	private PasswordField ww;
@@ -113,6 +113,14 @@ public class App extends Application{
 		menuFoto = new Image("file:src/user1.png");
 		inlogFotoView = new ImageView(inlogFoto);
 		menuFotoView = new ImageView(menuFoto);
+		afwezigheidInzienDatum = new DatePicker(LocalDate.now());
+		afwezigheidInzienDatum.setMaxWidth(300);
+		afwezigheidInzienKnop = new Button("Inzien");
+		afwezigheidInzienLabel = new Label("Maand van inzien:");
+		afwezigheidInzienLabel.setMaxWidth(300);
+		afwezigheidLabel = new Label("Afwezigheid inzien");
+		afwezigheidLabel.setMinWidth(600);
+		afwezigheid = new TextArea();
 		
 		
 		//Knop voor het uitloggen
@@ -145,7 +153,7 @@ public class App extends Application{
 				leraar.setVgap(4);
 				leraar.setHgap(4);
 				leraar.setPrefWrapLength(300);
-				leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen, menuFotoView);
+				leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, optieL5, uitloggen, menuFotoView);
 				Scene leraarkeuze = new Scene(leraar, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leraar");
@@ -163,7 +171,7 @@ public class App extends Application{
 				leerling.setVgap(4);
 				leerling.setHgap(4);
 				leerling.setPrefWrapLength(300);
-				leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen, menuFotoView);
+				leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, optieS5, uitloggen, menuFotoView);
 				Scene leraarkeuze = new Scene(leerling, 600, 800);
 				thestage.setScene(leraarkeuze);
 				thestage.setTitle("Leerling");
@@ -184,7 +192,7 @@ public class App extends Application{
 						leerling.setVgap(4);
 						leerling.setHgap(4);
 						leerling.setPrefWrapLength(300);
-						leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, uitloggen, menuFotoView);
+						leerling.getChildren().addAll(optieS1, optieS2, optieS3, optieS4, optieS5, uitloggen, menuFotoView);
 						Scene leraarkeuze = new Scene(leerling, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leerling");
@@ -197,7 +205,7 @@ public class App extends Application{
 						leraar.setVgap(4);
 						leraar.setHgap(4);
 						leraar.setPrefWrapLength(300);
-						leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, uitloggen, menuFotoView);
+						leraar.getChildren().addAll(optieL1, optieL2, optieL3, optieL4, optieL5, uitloggen, menuFotoView);
 						Scene leraarkeuze = new Scene(leraar, 600, 800);
 						thestage.setScene(leraarkeuze);
 						thestage.setTitle("Leraar");
@@ -366,6 +374,38 @@ public class App extends Application{
 			}
 			});
 		
+		
+		//Afwezigheid inzien Leraar
+		
+		optieL5 = new Button("Afwezigheid bekijken");
+		optieL5.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				afwezigheid.setText("");
+				afwezigheidInzienDatum.setValue(LocalDate.now());
+				afwezigheidInzienKnop.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						AfwezigheidInzien aI = new AfwezigheidInzien(gbrNm.getText(), afwezigheidInzienDatum.getValue());
+						try {
+							aI.afwezigInzien();
+							afwezigheid.setText(aI.toString());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}});
+				
+				FlowPane afwezigheidInzienL = new FlowPane();
+				afwezigheidInzienL.setPadding(new Insets(10,10,10,10));
+				afwezigheidInzienL.setVgap(4);
+				afwezigheidInzienL.setHgap(4);
+				afwezigheidInzienL.setPrefWrapLength(300);
+				afwezigheidInzienL.getChildren().addAll(afwezigheidLabel,afwezigheidInzienLabel, afwezigheidInzienDatum, afwezigheid, afwezigheidInzienKnop, terugL);
+				Scene afwezigheidInzienLeraar = new Scene(afwezigheidInzienL, 600, 800);
+				thestage.setScene(afwezigheidInzienLeraar);
+				thestage.setTitle("Afwezigheid Bekijken");
+				thestage.show();
+			}
+			});
+		
 		//Knop voor rooster bekijken leerling
 		
 		optieS1 = new Button("Bekijk Rooster");
@@ -394,6 +434,7 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
 		
 		//Knop voor presentie bekijken leerling
 		
@@ -493,6 +534,38 @@ public class App extends Application{
 				thestage.show();
 			}
 			});
+		
+		//Afwezigheid inzien Leraar
+		
+				optieS5 = new Button("Afwezigheid bekijken");
+				optieS5.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						afwezigheid.setText("");
+						afwezigheidInzienDatum.setValue(LocalDate.now());
+						afwezigheidInzienKnop.setOnAction(new EventHandler<ActionEvent>() {
+							public void handle(ActionEvent event) {
+								AfwezigheidInzien aI = new AfwezigheidInzien(gbrNm.getText(), afwezigheidInzienDatum.getValue());
+								try {
+									aI.afwezigInzien();
+									afwezigheid.setText(aI.toString());
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}});
+						
+						FlowPane afwezigheidInzienS = new FlowPane();
+						afwezigheidInzienS.setPadding(new Insets(10,10,10,10));
+						afwezigheidInzienS.setVgap(4);
+						afwezigheidInzienS.setHgap(4);
+						afwezigheidInzienS.setPrefWrapLength(300);
+						afwezigheidInzienS.getChildren().addAll(afwezigheidLabel, afwezigheidInzienLabel, afwezigheidInzienDatum, afwezigheid, afwezigheidInzienKnop, terugL);
+						Scene afwezigheidInzienLeerling = new Scene(afwezigheidInzienS, 600, 800);
+						thestage.setScene(afwezigheidInzienLeerling);
+						thestage.setTitle("Afwezigheid Bekijken");
+						thestage.show();
+					}
+					});
+		
 		
 		//Het inlogscherm
 		
